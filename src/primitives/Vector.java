@@ -36,9 +36,13 @@ public class Vector {
 
         return new Vector(
                 u2*v3-u3*v2,
-                u2*v3-u3*v2,
-                u2*v3-u3*v2
+                u3*v1-u1*v3,
+                u1*v2-u2*v1
         );
 
+    }
+
+    public double dotProduct(Vector n) {
+        return 0d;
     }
 }
