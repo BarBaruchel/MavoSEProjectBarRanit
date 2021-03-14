@@ -42,7 +42,11 @@ public class Vector {
 
     }
 
-    public double dotProduct(Vector n) {
-        return 0d;
+    public double dotProduct(Vector v) {
+        double x=_head._x._coord*v._head._x._coord;
+        double y=_head._y._coord*v._head._y._coord;
+        double z=_head._z._coord*v._head._z._coord;
+
+        return x+y+z;
     }
 }
