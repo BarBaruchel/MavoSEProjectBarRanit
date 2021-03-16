@@ -3,17 +3,14 @@ package primitives;
 import static primitives.Point3D.ZERO;
 
 public class Vector {
-    Point3D _head;
+   final Point3D _head;
 
-    public Point3D getHead() {
-        return _head;
-    }
 
     public Vector(Point3D head) {
-        if (ZERO.equals(head)) {
-            throw new IllegalArgumentException("Vector head cannot be Point(0,0,0)");
+        if (head.equals(ZERO)) {
+            throw new IllegalArgumentException("Vector head can not be Point(0,0,0)");
         }
-        _head = head;
+        _head = new Point3D(head._x, head._y, head._z);
     }
 
     public Vector(double x, double y, double z) {
@@ -23,6 +20,10 @@ public class Vector {
 //        }
 //        _head = head;
         this (new Point3D(x,y,z));
+    }
+
+    public Point3D getHead() {
+        return _head;
     }
 
     public Vector crossProduct(Vector v) {
