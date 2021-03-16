@@ -1,5 +1,7 @@
 package primitives;
 
+import java.util.Objects;
+
 import static primitives.Point3D.ZERO;
 
 public class Vector {
@@ -20,6 +22,10 @@ public class Vector {
 //        }
 //        _head = head;
         this (new Point3D(x,y,z));
+    }
+
+    public Vector(Vector dir) {
+        _head = new Point3D(dir._head._x, dir._head._y,dir._head._z);
     }
 
     public Point3D getHead() {
@@ -43,6 +49,19 @@ public class Vector {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vector vector = (Vector) o;
+        return _head.equals(vector._head);
+    }
+
+    @Override
+    public String toString() {
+        return "{" + _head + '}';
+    }
+
     public double dotProduct(Vector v) {
         double x=_head._x._coord*v._head._x._coord;
         double y=_head._y._coord*v._head._y._coord;
@@ -50,4 +69,5 @@ public class Vector {
 
         return x+y+z;
     }
+
 }
