@@ -15,7 +15,6 @@ public class Point3D {
     }
 
     public Point3D(double x, double y, double z) {
-        // this(new Coordinate(x),new Coordinate(y), new Coordinate(z));
         _x = new Coordinate(x);
         _y = new Coordinate(y);
         _z = new Coordinate(z);
@@ -37,6 +36,11 @@ public class Point3D {
         return _z;
     }
 
+    /**
+     * the function check if the two parameters are equal
+     * @param o
+     * @return true if equal, else return false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,6 +54,11 @@ public class Point3D {
         return "(" + _x + ',' + _y + ',' + _z + ")";
     }
 
+    /**
+     * Vector subtraction - gets a second point in the parameter
+     * @param pt2
+     * @return Returns a vector from the second point to the point on which the operation is performed
+     */
     public Vector subtract(Point3D pt2) {
         Point3D head = new Point3D(
                 _x._coord - pt2._x._coord,
@@ -65,7 +74,6 @@ public class Point3D {
 
     /**
      * squared distance between 2 3D points
-     *
      * @param point3D
      * @return the squared distance
      */
@@ -80,11 +88,26 @@ public class Point3D {
         return (((x2 - x1) * (x2 - x1)) * ((y2 - y1) * (y2 - y1)) * ((z2 - z1) * (z2 - z1)));
     }
 
+    /**
+     * @param point3D
+     * @return euclidean distance between 2  3D points
+     */
+    public double distance(Point3D point3D) {
+        return Math.sqrt(distanceSquared(point3D));
+    }
+
+        /**
+         * Adding a vector to a point
+         * @param vector
+         * @return Returns a new point
+         */
     public Point3D add(Vector vector){
         return new Point3D(_x._coord+vector._head._x._coord,
                             _y._coord+vector._head._y._coord,
                             _z._coord+vector._head._z._coord
                 );
     }
+
+
 
 }
