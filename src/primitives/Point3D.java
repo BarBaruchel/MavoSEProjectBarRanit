@@ -6,21 +6,41 @@ public class Point3D {
     final Coordinate _y;
     final Coordinate _z;
 
-    public final static Point3D ZERO = new Point3D(0d, 0d, 0d);
+    public final static Point3D ZERO  = new Point3D(0d, 0d, 0d);
 
     public Point3D(Coordinate x, Coordinate y, Coordinate z) {
-        _x = x;
-        _y = y;
-        _z = z;
+        _x = new Coordinate(x._coord);
+        _y = new Coordinate(y._coord);
+        _z = new Coordinate(z._coord);
     }
 
     public Point3D(double x, double y, double z) {
-        // this(new Coordinate(x),new Coordinate(y), new Coordinate(z));
         _x = new Coordinate(x);
         _y = new Coordinate(y);
         _z = new Coordinate(z);
     }
 
+    public Point3D(Point3D pt) {
+        this(pt._x, pt._y, pt._z);
+    }
+
+    public Coordinate get_x() {
+        return _x;
+    }
+
+    public Coordinate get_y() {
+        return _y;
+    }
+
+    public Coordinate get_z() {
+        return _z;
+    }
+
+    /**
+     * the function check if the two parameters are equal
+     * @param o
+     * @return true if equal, else return false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,14 +51,19 @@ public class Point3D {
 
     @Override
     public String toString() {
-        return "(" + _x + ',' + _y + ',' + _z + ')';
+        return "(" + _x + ',' + _y + ',' + _z + ")";
     }
 
+    /**
+     * Vector subtraction - gets a second point in the parameter
+     * @param pt2
+     * @return Returns a vector from the second point to the point on which the operation is performed
+     */
     public Vector subtract(Point3D pt2) {
         Point3D head = new Point3D(
-                _x._coord- pt2._x._coord,
-                _y._coord- pt2._y._coord,
-                _z._coord- pt2._z._coord
+                _x._coord - pt2._x._coord,
+                _y._coord - pt2._y._coord,
+                _z._coord - pt2._z._coord
         );
         if (ZERO.equals(head)) {
             throw new IllegalArgumentException("Vector head cannot be Point(0,0,0)");
@@ -46,4 +71,43 @@ public class Point3D {
 
         return new Vector(head);
     }
+
+    /**
+     * squared distance between 2 3D points
+     * @param point3D
+     * @return the squared distance
+     */
+    public double distanceSquared(Point3D point3D) {
+        final double x1 = _x._coord;
+        final double y1 = _y._coord;
+        final double z1 = _z._coord;
+        final double x2 = point3D._x._coord;
+        final double y2 = point3D._y._coord;
+        final double z2 = point3D._z._coord;
+
+        return (((x2 - x1) * (x2 - x1)) * ((y2 - y1) * (y2 - y1)) * ((z2 - z1) * (z2 - z1)));
+    }
+
+    /**
+     * @param point3D
+     * @return euclidean distance between 2  3D points
+     */
+    public double distance(Point3D point3D) {
+        return Math.sqrt(distanceSquared(point3D));
+    }
+
+        /**
+         * Adding a vector to a point
+         * @param vector
+         * @return Returns a new point
+         */
+    public Point3D add(Vector vector){
+        return new Point3D(_x._coord+vector._head._x._coord,
+                            _y._coord+vector._head._y._coord,
+                            _z._coord+vector._head._z._coord
+                );
+    }
+
+
+
 }
