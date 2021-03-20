@@ -3,7 +3,10 @@ package primitives;
 import java.util.Objects;
 
 import static primitives.Point3D.ZERO;
-//class vector that get variable from Point3D type
+
+/**
+ * class vector that get variable from Point3D type
+ */
 public class Vector {
     Point3D _head;
 
@@ -19,19 +22,37 @@ public class Vector {
         }
         _head = new Point3D(head._x, head._y, head._z);
     }
-//constructor that get point3D
+
+    /**
+     * constructor that get point3D
+     * @param x
+     * @param y
+     * @param z
+     */
     public Vector(double x, double y, double z) {
         this(new Point3D(x, y, z));
     }
-//constructor that get vector
+
+    /**
+     * constructor that get vector
+     * @param dir
+     */
     public Vector(Vector dir) {
         _head = new Point3D(dir._head._x, dir._head._y, dir._head._z);
     }
-//return _head
+
+    /**
+     * @return  _head
+     */
     public Point3D getHead() {
         return _head;
     }
-//the function return the result of two vectors multiplied by a vector
+
+    /**
+     * the function get to vectors
+     * @param v
+     * @return the result of two vectors multiplied by a vector
+     */
     public Vector crossProduct(Vector v) {
         double u1 = _head._x._coord;
         double u2 = _head._y._coord;
@@ -62,7 +83,7 @@ public class Vector {
     }
 
     /**
-     *
+     * print head
      * @return _head
      */
     @Override

@@ -9,16 +9,28 @@ public class Ray {
      */
     final Point3D _p0;
     final Vector _dir;
-//constructor that get variables from point3D and vector and initialization them
+
+    /**
+     * constructor that get point3D`s variable and vector`s variable and initialization them
+     * and normalized the vector`s variable
+     * @param p0
+     * @param dir
+     */
     public Ray(Point3D p0, Vector dir) {
         _p0 = p0;
         _dir = dir.normalized();;
     }
-//return point
+
+    /**
+     * @return point
+     */
     public Point3D get_p0() {
         return _p0;
     }
-//return vector
+
+    /**
+     * @return vector
+     */
     public Vector get_dir() {
         return new Vector(_dir._head);
     }
@@ -37,8 +49,7 @@ public class Ray {
     }
 
     /**
-     *
-     * @return the point and the vector
+     * @return the point and the vector and print
      */
     @Override
     public String toString() {

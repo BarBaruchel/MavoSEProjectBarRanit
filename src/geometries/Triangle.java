@@ -3,13 +3,22 @@ package geometries;
 import primitives.*;
 
 public class Triangle extends Polygon{ //implements Geometry
-//* constructor that det 3 point from class Point3D*/
+
+    /**
+     *  constructor that get 3 point from class Point3D and call to super constructor
+     *  whit the three variable
+     * @param p1
+     * @param p2
+     * @param p3
+     */
     public Triangle(Point3D p1, Point3D p2, Point3D p3) {
         super(p1, p2, p3);
     }
 
-// the function return the object */
 
+    /**
+     * @return the variables of the Triangle and print
+     */
     @Override
     public String toString() {
         return "Triangle{" +
@@ -17,7 +26,12 @@ public class Triangle extends Polygon{ //implements Geometry
                 ", plane=" + plane +
                 '}';
     }
-// Function that get point and return null
+
+    /**
+     * Function that get point
+     * @param point
+     * @return null
+     */
     public Vector getNormal(Point3D point) {
         return null;
     }

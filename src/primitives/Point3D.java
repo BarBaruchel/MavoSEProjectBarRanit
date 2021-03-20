@@ -7,33 +7,61 @@ public class Point3D {
     final Coordinate _x;
     final Coordinate _y;
     final Coordinate _z;
-//point that const and the point is (0,0,0)
+
+    /**
+     * point that const and the point is (0,0,0)
+     */
     public final static Point3D ZERO  = new Point3D(0d, 0d, 0d);
-//constructor that make a point from coordinate class
+
+    /**
+     * constructor that make a point from coordinate class
+     * @param x
+     * @param y
+     * @param z
+     */
     public Point3D(Coordinate x, Coordinate y, Coordinate z) {
         _x = new Coordinate(x._coord);
         _y = new Coordinate(y._coord);
         _z = new Coordinate(z._coord);
     }
-//constructor that make a double point from coordinate
+
+    /**
+     * constructor that make a double point from coordinate
+     * @param x
+     * @param y
+     * @param z
+     */
     public Point3D(double x, double y, double z) {
         _x = new Coordinate(x);
         _y = new Coordinate(y);
         _z = new Coordinate(z);
     }
-//constructor that get Point3D type and return point
+
+    /**
+     * constructor that get Point3D type and return point
+     * @param pt
+     */
     public Point3D(Point3D pt) {
         this(pt._x, pt._y, pt._z);
     }
-//return _x
+
+    /**
+     * @return _x
+     */
     public Coordinate get_x() {
         return _x;
     }
-//return _y
+
+    /**
+     * @return _y
+     */
     public Coordinate get_y() {
         return _y;
     }
-//return _z
+
+    /**
+     * @return _z
+     */
     public Coordinate get_z() {
         return _z;
     }
@@ -52,7 +80,6 @@ public class Point3D {
     }
 
     /**
-     *
      * @return the point (_x,_y,_z)
      */
     @Override
@@ -102,18 +129,15 @@ public class Point3D {
         return Math.sqrt(distanceSquared(point3D));
     }
 
-        /**
-         * Adding a vector to a point
-         * @param vector
-         * @return Returns a new point
-         */
+    /**
+     * Adding a vector to a point
+     * @param vector
+     * @return Returns a new point
+     */
     public Point3D add(Vector vector){
         return new Point3D(_x._coord+vector._head._x._coord,
                             _y._coord+vector._head._y._coord,
                             _z._coord+vector._head._z._coord
                 );
     }
-
-
-
 }

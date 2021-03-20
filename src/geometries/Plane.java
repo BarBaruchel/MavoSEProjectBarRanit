@@ -2,19 +2,33 @@ package geometries;
 
 import primitives.Point3D;
 import primitives.Vector;
-// class plane that heir from geometry and had two variables one from point3D type and one from vector type*/
 
+/**
+ * class plane that heir from geometry and had two variables one from point3D type and one from vector type
+ */
 public class Plane implements Geometry {
 
     final Point3D _q0;
     final Vector _normal;
-//constructor that get variable from Point3D type and other from vector type
- //and return the point and the normalized normal from vector type
+
+    /**
+     * constructor that get Point3D`s variable and normal from vector type
+     *  and normalized the normal from vector type
+      * @param p0
+     * @param normal
+     */
     public Plane(Point3D p0, Vector normal) {
         _q0 = p0;
         _normal = normal.normalized();
     }
-//constructor that calculate the normal according to what is learned on a triangle normal straight as null from the normal field
+
+    /**
+     * constructor that calculate the normal according
+     * to what is learned on a triangle normal straight as null from the normal field
+     * @param p1
+     * @param p2
+     * @param p3
+     */
     public Plane(Point3D p1, Point3D p2, Point3D p3) {
         _q0 = p1;
 
@@ -29,7 +43,9 @@ public class Plane implements Geometry {
         _normal = N;
     }
 
-// function that return the variables of a plane */
+    /**
+     * @return the variables of a plane and print
+     */
     @Override
     public String toString() {
         return "Plane{" +
@@ -37,11 +53,17 @@ public class Plane implements Geometry {
                 ", _normal=" + _normal +
                 '}';
     }
-//return the point
+
+    /**
+     * @return _q0
+     */
     public Point3D get_q0() {
         return _q0;
     }
-//return the normal
+
+    /**
+     * @return _normal
+     */
     public Vector get_normal() {
         return _normal;
     }
@@ -53,8 +75,7 @@ public class Plane implements Geometry {
      */
     @Override
     public Vector getNormal(Point3D point) {
-        return null;
-        //return _normal;
+        return _normal;
     }
 
 }
