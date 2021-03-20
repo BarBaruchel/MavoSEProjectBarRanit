@@ -9,20 +9,25 @@ public class Ray {
      */
     final Point3D _p0;
     final Vector _dir;
-
+//constructor that get variables from point3D and vector and initialization them
     public Ray(Point3D p0, Vector dir) {
         _p0 = p0;
         _dir = dir.normalized();;
     }
-
+//return point
     public Point3D get_p0() {
         return _p0;
     }
-
+//return vector
     public Vector get_dir() {
         return new Vector(_dir._head);
     }
 
+    /**
+     * check if the two parameter are equal
+     * @param
+     * @return if equal true else false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,6 +36,10 @@ public class Ray {
         return _p0.equals(ray._p0) && _dir.equals(ray._dir);
     }
 
+    /**
+     *
+     * @return the point and the vector
+     */
     @Override
     public String toString() {
         return "Point3D:"+_p0+"\n"+"Vector:"+_dir;

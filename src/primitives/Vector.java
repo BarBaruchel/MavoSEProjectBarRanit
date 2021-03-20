@@ -3,30 +3,35 @@ package primitives;
 import java.util.Objects;
 
 import static primitives.Point3D.ZERO;
-
+//class vector that get variable from Point3D type
 public class Vector {
     Point3D _head;
 
-
+    /**
+     * constructor that get point and check if it ZERO
+     * if yes throw exception "vector head can not be point (0,0,0)"
+     * else get the point
+     * @param head
+     */
     public Vector(Point3D head) {
         if (head.equals(ZERO)) {
             throw new IllegalArgumentException("Vector head can not be Point(0,0,0)");
         }
         _head = new Point3D(head._x, head._y, head._z);
     }
-
+//constructor that get point3D
     public Vector(double x, double y, double z) {
         this(new Point3D(x, y, z));
     }
-
+//constructor that get vector
     public Vector(Vector dir) {
         _head = new Point3D(dir._head._x, dir._head._y, dir._head._z);
     }
-
+//return _head
     public Point3D getHead() {
         return _head;
     }
-
+//the function return the result of two vectors multiplied by a vector
     public Vector crossProduct(Vector v) {
         double u1 = _head._x._coord;
         double u2 = _head._y._coord;
@@ -43,6 +48,11 @@ public class Vector {
         );
     }
 
+    /**
+     * he function check if the two parameters are equal
+     * @param o
+     * @return true if it's equal else return false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,6 +61,10 @@ public class Vector {
         return _head.equals(vector._head);
     }
 
+    /**
+     *
+     * @return _head
+     */
     @Override
     public String toString() {
         return "{" + _head + '}';
