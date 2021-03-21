@@ -2,6 +2,9 @@ package primitives;
 
 import java.util.Objects;
 
+/**
+ * class Ray that get point in 3D and vector that cannot changed
+ */
 public class Ray {
     /**
      * @params _p0 pOrigin
@@ -18,27 +21,30 @@ public class Ray {
      */
     public Ray(Point3D p0, Vector dir) {
         _p0 = p0;
-        _dir = dir.normalized();;
+        _dir = dir.normalized();
+        ;
     }
 
     /**
-     * @return point
+     * getter p0 field
+     * @return reference to the p0 point of the Ray
      */
     public Point3D get_p0() {
         return _p0;
     }
 
     /**
-     * @return vector
+     * getter dir field
+     * @return reference to the dir vector of the Ray
      */
     public Vector get_dir() {
         return new Vector(_dir._head);
     }
 
     /**
-     * check if the two parameter are equal
-     * @param
-     * @return if equal true else false
+     * the function check if the two parameters are equal
+     * @param o Object (basically another Ray) to compare
+     * @return true if equal, else return false
      */
     @Override
     public boolean equals(Object o) {
@@ -53,6 +59,6 @@ public class Ray {
      */
     @Override
     public String toString() {
-        return "Point3D:"+_p0+"\n"+"Vector:"+_dir;
+        return "Point3D:" + _p0 + "\n" + "Vector:" + _dir;
     }
 }

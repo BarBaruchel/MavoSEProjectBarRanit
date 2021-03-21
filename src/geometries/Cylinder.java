@@ -25,7 +25,8 @@ public class Cylinder extends Tube {   // implements Geometry
     }
 
     /**
-     * @return _height
+     * getter height field
+     * @return reference to the _height
      */
     public double get_height() {
         return _height;

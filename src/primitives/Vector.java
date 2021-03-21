@@ -20,11 +20,12 @@ public class Vector {
         if (head.equals(ZERO)) {
             throw new IllegalArgumentException("Vector head can not be Point(0,0,0)");
         }
-        _head = new Point3D(head._x, head._y, head._z);
+        _head = new Point3D(head._x._coord, head._y._coord, head._z._coord);
     }
 
     /**
-     * constructor that get point3D
+     * constructor that get 3 points and create Point3D`s variable
+     * with the 3 points
      * @param x
      * @param y
      * @param z
@@ -35,14 +36,17 @@ public class Vector {
 
     /**
      * constructor that get vector
+     * constructor that get vector and create Point3D`s variable
+     *  with the 3 points in the vector
      * @param dir
      */
     public Vector(Vector dir) {
-        _head = new Point3D(dir._head._x, dir._head._y, dir._head._z);
+        _head = new Point3D(dir._head._x._coord, dir._head._y._coord, dir._head._z._coord);
     }
 
     /**
-     * @return  _head
+     * getter head field
+     * @return reference to the _head point of the Vector
      */
     public Point3D getHead() {
         return _head;
@@ -50,18 +54,22 @@ public class Vector {
 
     /**
      * the function get to vectors
-     * @param v
+     * @param v the second vector
      * @return the result of two vectors multiplied by a vector
      */
     public Vector crossProduct(Vector v) {
-        double u1 = _head._x._coord;
-        double u2 = _head._y._coord;
-        double u3 = _head._z._coord;
+        double u1 = _head._x._coord;            // get the x in the first vector
+        double u2 = _head._y._coord;            // get the y in the first vector
+        double u3 = _head._z._coord;            // get the z in the first vector
 
-        double v1 = v._head._x._coord;
-        double v2 = v._head._y._coord;
-        double v3 = v._head._z._coord;
+        double v1 = v._head._x._coord;          // get the x in the second vector
+        double v2 = v._head._y._coord;          // get the y in the second vector
+        double v3 = v._head._z._coord;          // get the z in the second vector
 
+        /**
+         *  create a new Vector and do the subtraction between the two points
+         *  that accordingly multiplication and return that
+         */
         return new Vector(
                 u2 * v3 - u3 * v2,
                 u3 * v1 - u1 * v3,
@@ -70,9 +78,9 @@ public class Vector {
     }
 
     /**
-     * he function check if the two parameters are equal
-     * @param o
-     * @return true if it's equal else return false
+     * the function check if the two parameters are equal
+     * @param o Object (basically another Vector) to compare
+     * @return true if equal, else return false
      */
     @Override
     public boolean equals(Object o) {
@@ -83,8 +91,7 @@ public class Vector {
     }
 
     /**
-     * print head
-     * @return _head
+     * @return the vector and print
      */
     @Override
     public String toString() {
@@ -92,24 +99,31 @@ public class Vector {
     }
 
     /**
-     * This function do scalar product
-     * @param v
-     * @return the result
+     * dot product between two vectors (scalar product)
+     * @param v the right vector of U.V
+     * @return scalre value of dot product
      */
     public double dotProduct(Vector v) {
-        double x = _head._x._coord * v._head._x._coord;
-        double y = _head._y._coord * v._head._y._coord;
-        double z = _head._z._coord * v._head._z._coord;
+        double x = _head._x._coord * v._head._x._coord;     //multiply the the point x int the first Vector with the x point in the second Vector
+        double y = _head._y._coord * v._head._y._coord;    //multiply the the point y int the first Vector with the y point in the second Vector
+        double z = _head._z._coord * v._head._z._coord;    //multiply the the point z int the first Vector with the z point in the second Vector
 
+        /**
+         * return the 3 points additional after the multiplication
+         */
         return x + y + z;
     }
 
     /**
-     * This function do vector connection
-     * @param vector Vector
+     * This function do vector additional
+     * @param vector the second vector
      * @return new Vector (u+v)
      */
     public Vector add(Vector vector) {
+        /**
+         *  create a new Vector and do the additional between the two points
+         *  accordingly and return that
+         */
         return new Vector(new Point3D(_head._x._coord + vector._head._x._coord,
                 _head._y._coord + vector._head._y._coord,
                 _head._z._coord + vector._head._z._coord
@@ -118,26 +132,38 @@ public class Vector {
 
     /**
      * This function do vector subtraction
-     * @param vector Vector
+     * @param vector the second vector
      * @return new Vector(u-v)
      */
     public Vector subtract(Vector vector) {
-        double x = _head._x._coord - vector._head._x._coord;
-        double y = _head._y._coord - vector._head._y._coord;
-        double z = _head._z._coord - vector._head._z._coord;
+        double x = _head._x._coord - vector._head._x._coord;    //subtraction the the point x int the first Vector with the x point in the second Vector
+        double y = _head._y._coord - vector._head._y._coord;   //subtraction the the point y int the first Vector with the y point in the second Vector
+        double z = _head._z._coord - vector._head._z._coord;   //subtraction the the point z int the first Vector with the z point in the second Vector
 
+        /**
+         * return a new vector with the 3 points
+         */
         return new Vector(new Point3D(x, y, z));
     }
 
     /**
-     *This function do vector multiplication by a number - scalar
+     * This function do vector multiplication by a number - scalar
      * @param scalar scaling factor
      * @return new vector
      */
     public Vector scale(double scalar) {
-        if(Double.compare(scalar,0d)== 0){
+        /**
+         * if the scalar number is zero throw IllegalArgumentException "scaling factor == 0"
+         * else create a new vector and do multiplication between the points and the scalar
+         * and return the that
+         */
+        if (Double.compare(scalar, 0d) == 0) {
             throw new IllegalArgumentException("scaling factor == 0");
         }
+        /**
+         *  create a new Vector and do the subtraction between the scalar and the points
+         *  that accordingly multiplication and return that
+         */
         return new Vector(
                 new Point3D(
                         scalar * _head._x._coord,
@@ -146,12 +172,11 @@ public class Vector {
     }
 
     /**
-     * This function do vector product
-     * @param vector
+     * This function do vector cross product (vectorial product)
+     * @param vector the second vector
      * @return new vector
      */
-    public Vector crossPruduct(Vector vector)
-    {
+    public Vector crossPruduct(Vector vector) {
         double u1 = _head._x._coord;
         double u2 = _head._y._coord;
         double u3 = _head._z._coord;
@@ -159,6 +184,10 @@ public class Vector {
         double v2 = vector._head._y._coord;
         double v3 = vector._head._z._coord;
 
+        /**
+         *  create a new Vector and do the subtraction between the two points
+         *  that accordingly multiplication and return that
+         */
         return new Vector(new Point3D(
                 u2 * v3 - u3 * v2,
                 u3 * v1 - u1 * v3,
@@ -167,7 +196,8 @@ public class Vector {
     }
 
     /**
-     * This function do calculate the length of the vector squared
+     * This function calculate the length of the vector squared
+     * using by lengthSquared function
      * @return the result
      */
     public double length() {
@@ -175,7 +205,7 @@ public class Vector {
     }
 
     /**
-     * This function do calculate the length of the vector
+     * This function calculate the length of the vector
      * @return the result
      */
     public double lengthSquared() {
@@ -183,18 +213,11 @@ public class Vector {
         double u2 = _head._y._coord;
         double u3 = _head._z._coord;
 
+        /**
+         * return all the 3 points by multiplied themselves and do additional
+         * x^2 + y^2 + z^2
+         */
         return u1 * u1 + u2 * u2 + u3 * u3;
-    }
-
-    /**
-     * A normalization operation that returns a new normalized vector
-     * in the same direction as the original vector
-     * @return new Vector normalized
-     */
-    public Vector normalized() {
-        Vector result = new Vector(_head);
-        result.normalize();
-        return result;
     }
 
     /**
@@ -202,6 +225,7 @@ public class Vector {
      * (the only action that changes the object to which it was summoned).
      * The change is made by replacing
      * the head point with a new point with updated coordinates
+     *
      * @return The operation will also return the vector itself
      * for the purpose of chaining the operations if necessary
      */
@@ -216,8 +240,40 @@ public class Vector {
         double y = this._head._y._coord;
         double z = this._head._z._coord;
 
-        this._head = new Point3D(x / length, y / length, z / length);
+        /**
+         * create a new Point3D, and dived the each point by the length of the vector
+         */
+        Point3D newPoint = new Point3D(x / length, y / length, z / length);
 
+        /**
+         * if newPoint is (0,0,0) throw IllegalArgumentException that
+         * head vector cannot be point (0,0,0)
+         * else enter to the head the normalize vector and return reference
+         */
+        if (ZERO.equals(newPoint)) {
+            throw new IllegalArgumentException("head vector cannot be point (0,0,0)");
+        }
+
+        _head = newPoint;
         return this;
     }
+
+    /**
+     * A normalization operation that returns a new normalized vector
+     * in the same direction as the original vector
+     *
+     * @return new Vector normalized
+     */
+    public Vector normalized() {
+        /**
+         * create a new vector and to that the vector that we want to do normalized
+         * call to the normalize function on the new created vector
+         * and return that
+         */
+        Vector result = new Vector(_head);
+        result.normalize();
+        return result;
+    }
+
+
 }

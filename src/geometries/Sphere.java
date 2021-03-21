@@ -24,14 +24,16 @@ public class Sphere implements Geometry {
     }
 
     /**
-     * @return _center
+     * getter center field
+     * @return reference to the center of the Sphere
      */
     public Point3D getCenter() {
         return _center;
     }
 
     /**
-     * @return _radius
+     * getter radius field
+     * @return reference to the radius of the Sphere
      */
     public double getRadius() {
         return _radius;
@@ -39,12 +41,14 @@ public class Sphere implements Geometry {
 
     /**
      * Function that get point
-     * @param p
+     * @param p that is the point from type Point3D
      * @return null
      */
     @Override
     public Vector getNormal(Point3D p) {
-       return  null;
+        Vector O_P= p.subtract(_center);
+        return O_P.normalize();
+      // return  null;
     }
 
     /**

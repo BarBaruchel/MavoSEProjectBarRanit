@@ -2,6 +2,9 @@ package geometries;
 
 import primitives.*;
 
+/**
+ * class Triangle that inheritor from Polygon
+ */
 public class Triangle extends Polygon{ //implements Geometry
 
     /**
