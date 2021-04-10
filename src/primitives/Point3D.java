@@ -14,10 +14,10 @@ public class Point3D {
     public final static Point3D ZERO  = new Point3D(0d, 0d, 0d);
 
     /**
-     * constructor that make a double point from coordinate
-     * @param x
-     * @param y
-     * @param z
+     * primary constructor that make a double point from coordinate
+     * @param x double value for X axis
+     * @param y double value for Y axis
+     * @param z double value for Z axis
      */
     public Point3D(double x, double y, double z) {
         _x = new Coordinate(x);

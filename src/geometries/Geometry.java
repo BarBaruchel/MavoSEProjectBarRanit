@@ -9,5 +9,10 @@ import primitives.Vector;
  * and return normalized vector
  */
 public interface Geometry {
+    /**
+     * The function receive a point and return a normal in this point to the body
+     * @param point point pointing in direction of the normal
+     * @return normal vector to the Geometry
+     */
     Vector getNormal(Point3D point);
 }
