@@ -17,7 +17,7 @@ public class Ray {
      * constructor that get point3D`s variable and vector`s variable and initialization them
      * and normalized the vector`s variable
      * @param p0
-     * @param dir
+     * @param dir direction
      */
     public Ray(Point3D p0, Vector dir) {
         _p0 = p0;
@@ -35,7 +35,7 @@ public class Ray {
 
     /**
      * getter dir field
-     * @return reference to the dir vector of the Ray
+     * @return copy of the dir vector of the Ray
      */
     public Vector get_dir() {
         return new Vector(_dir._head);

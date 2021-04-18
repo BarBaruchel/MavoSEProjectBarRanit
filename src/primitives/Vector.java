@@ -147,7 +147,7 @@ public class Vector {
     }
 
     /**
-     * This function do vector multiplication by a number - scalar
+     * This function do vector multiplication by a number ( scalar)
      * @param scalar scaling factor
      * @return new vector
      */

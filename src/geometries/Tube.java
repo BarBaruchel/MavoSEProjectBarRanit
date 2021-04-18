@@ -50,19 +50,26 @@ public class Tube implements Geometry {
      */
     @Override
     public Vector getNormal(Point3D point) {
-        Point3D PO=_axisRay.get_p0();
+        Point3D P0=_axisRay.get_p0();
         Vector v=_axisRay.get_dir();
-        Vector PO_P= point.subtract(PO);
+        Vector P0_P= point.subtract(P0);
 
-        double t= alignZero(v.dotProduct(PO_P));
+        double t= alignZero(v.dotProduct(P0_P));
 
-        // EXPLAIN HERE WHAT HAPPENED
+        /**
+         * here we checked that if t is zero,that mean - P0 is on the point O (the center)
+         * so return normalize P0_P
+         */
         if(isZero(t)){
-            return PO_P.normalize();
+            return P0_P.normalize();
         }
 
-        Point3D O= PO.add(v.scale(t));
+        Point3D O= P0.add(v.scale(t));
 
+        /**
+         * if O equals to the point that mean the point is on O (the center),
+         * on the axis of the tube
+         */
         if (O.equals(point)){
             throw new IllegalArgumentException(("point p cannot be on the tube`s axis"));
         }

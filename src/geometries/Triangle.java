@@ -30,13 +30,6 @@ public class Triangle extends Polygon{ //implements Geometry
                 '}';
     }
 
-    /**
-     * Function that get point
-     * @param point
-     * @return null
-     */
-    public Vector getNormal(Point3D point) {
-        return null;
-    }
+
 
 }

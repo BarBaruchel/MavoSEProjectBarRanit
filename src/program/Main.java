@@ -32,7 +32,7 @@ public final class Main {
         Vector v2 = new Vector(-2, -4, -6);
         Vector v3 = new Vector(0, 3, -2);
 
-        // test length..
+        // test length
         if (!isZero(v1.lengthSquared() - 14))
             out.println("ERROR: lengthSquared() wrong value");
         if (!isZero(new Vector(0, 3, 4).length() - 5))
@@ -65,7 +65,7 @@ public final class Main {
             out.println("ERROR: normalize() result is not a unit vector");
         Vector u = v.normalized();
         if (u == v)
-            out.println("ERROR: normalizated() function does not create a new vector");
+            out.println("ERROR: normalized() function does not create a new vector");
 
         // Test operations with points and vectors
         Point3D p1 = new Point3D(1, 2, 3);
