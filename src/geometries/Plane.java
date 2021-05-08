@@ -1,7 +1,12 @@
 package geometries;
 
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
+
+import static primitives.Util.isZero;
 
 /**
  * class plane that heir from geometry and had two variables one from point3D type and one from vector type
@@ -81,4 +86,31 @@ public class Plane implements Geometry {
         return _normal;
     }
 
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        Point3D P0= ray.get_p0();   // the point that outside the plane
+        Vector v= ray.get_dir();   //the vector that start on p0 to P that on the plane
+
+        // if _q0 equals to p0 return immutable list 0f q0
+        if (_q0.equals(P0)){
+            return List.of(_q0);
+        }
+
+        double nv= _normal.dotProduct(v);
+
+        /**
+         * if the dot Product between n and v is zero that mean they vertical to each other
+         * and the ray is lying in the plane axis
+         * therefore return null
+         */
+        if(isZero(nv)){
+            return  null;
+        }
+
+        double t= _normal.dotProduct(_q0.subtract(P0));
+        t/= nv;
+        Point3D p= ray.getTargetPoint(t);
+        //return list of p because, there are elements that have more then one intersection
+        return List.of(p);
+    }
 }

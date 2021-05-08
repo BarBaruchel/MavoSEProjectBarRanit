@@ -2,6 +2,8 @@ package primitives;
 
 import java.util.Objects;
 
+import static primitives.Util.isZero;
+
 /**
  * class Ray that get point in 3D and vector that cannot changed
  */
@@ -60,5 +62,16 @@ public class Ray {
     @Override
     public String toString() {
         return "Point3D:" + _p0 + "\n" + "Vector:" + _dir;
+    }
+
+    /**
+     * @param t - A certain length
+     * @return returns the point that the ray hit
+     */
+    public Point3D getTargetPoint(double t) {
+        if (isZero(t)) {
+            return _p0;
+        }
+        return _p0.add(_dir.scale(t));
     }
 }

@@ -12,10 +12,9 @@ import static primitives.Util.isZero;
 /**
  *The class inheritor from Geometry and get two variable that can not change
  */
-public class Tube implements Geometry {
+public class Tube extends RadialGeometry implements Geometry {
 
     final Ray _axisRay;
-    final double _radius;
 
     /**
      * Constructor that get the two variables and initializes them
@@ -23,8 +22,8 @@ public class Tube implements Geometry {
      * @param radius
      */
     public Tube(Ray axisRay, double radius) {
+        super(radius);
         _axisRay = axisRay;
-        _radius = radius;
     }
 
     /**
@@ -33,14 +32,6 @@ public class Tube implements Geometry {
      */
     public Ray get_axisRay() {
         return _axisRay;
-    }
-
-    /**
-     * getter radius field
-     * @return reference to the _radius of the Tube
-     */
-    public double get_radius() {
-        return _radius;
     }
 
     /**
@@ -88,5 +79,10 @@ public class Tube implements Geometry {
                 "_axisRay=" + _axisRay +
                 ", _radius=" + _radius +
                 '}';
+    }
+
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        return null;
     }
 }

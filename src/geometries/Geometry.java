@@ -8,7 +8,7 @@ import primitives.Vector;
  * function getNormal that receive one Point3D parameter
  * and return normalized vector
  */
-public interface Geometry {
+public interface Geometry extends Intersectable {
     /**
      * The function receive a point and return a normal in this point to the body
      * @param point point pointing in direction of the normal
