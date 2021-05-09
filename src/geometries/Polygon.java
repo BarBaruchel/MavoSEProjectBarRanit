@@ -85,6 +85,11 @@ public class Polygon implements Geometry {
         return plane.getNormal(null);
     }
 
+    /**
+     * The function find the intersections the ray and the plane
+     * @param ray -that need to find where is hit
+     * @return list of intersections point
+     */
     @Override
     public List<Point3D> findIntersections(Ray ray) {
         List<Point3D> result = plane.findIntersections(ray);

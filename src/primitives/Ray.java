@@ -24,7 +24,6 @@ public class Ray {
     public Ray(Point3D p0, Vector dir) {
         _p0 = p0;
         _dir = dir.normalized();
-        ;
     }
 
     /**

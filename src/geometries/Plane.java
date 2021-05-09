@@ -86,6 +86,11 @@ public class Plane implements Geometry {
         return _normal;
     }
 
+    /**
+     * The function find the intersections the ray and the plane
+     * @param ray -that need to find where is hit
+     * @return list of intersections point
+     */
     @Override
     public List<Point3D> findIntersections(Ray ray) {
         Point3D P0= ray.get_p0();   // the point that outside the plane

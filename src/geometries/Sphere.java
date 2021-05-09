@@ -55,6 +55,11 @@ public class Sphere extends RadialGeometry implements Geometry {
                 '}';
     }
 
+    /**
+     * The function find the intersections the ray and the plane
+     * @param ray -that need to find where is hit
+     * @return list of intersections point
+     */
     @Override
     public List<Point3D> findIntersections(Ray ray) {
 
