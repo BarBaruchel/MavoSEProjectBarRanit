@@ -1,5 +1,6 @@
 package primitives;
 
+import java.util.List;
 import java.util.Objects;
 
 import static primitives.Util.isZero;
@@ -40,6 +41,40 @@ public class Ray {
      */
     public Vector get_dir() {
         return new Vector(_dir._head);
+    }
+
+    /**
+     * find the closest Point to origin ray
+     * @param pointsList intersections point List
+     * @return closest point
+     */
+    public Point3D findClosestPoint(List<Point3D> pointsList){
+        /**
+         * the near point
+         */
+        Point3D result =null;
+        /**
+         * initialize with a big number that we sure it will change
+         */
+        double closestDistance = Double.MAX_VALUE;
+
+        /**
+         * if the point equals to null, it`s mean there
+         * is no point that close to it
+         */
+        if(pointsList== null){
+            return null;
+        }
+
+        for (Point3D p: pointsList) {
+            double temp = p.distance(_p0);
+            if(temp < closestDistance){
+                closestDistance =temp;
+                result =p;
+            }
+        }
+
+        return  result;
     }
 
     /**
