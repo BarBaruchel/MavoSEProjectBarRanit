@@ -14,7 +14,7 @@ import java.util.MissingResourceException;
 public class Render {
 
     ImageWriter _imageWriter = null;
-    Scene _scene = null;
+   // Scene _scene ;
     Camera _camera = null;
     RayTracerBase _rayTracerBase = null;
 
@@ -28,15 +28,15 @@ public class Render {
         return this;
     }
 
-    /**
-     * setter function that get Scene variable and update the _scene
-     * @param scene
-     * @return the object itself for threading
-     */
-    public Render setScene(Scene scene) {
-        _scene = scene;
-        return this;
-    }
+//  /**
+//   * setter function that get Scene variable and update the _scene
+//   * @param scene
+//   * @return the object itself for threading
+//   */
+//  public Render setScene(Scene scene) {
+//      _scene = scene;
+//      return this;
+//  }
 
     /**
      * setter function that get Camera variable and update the _camera
@@ -71,9 +71,9 @@ public class Render {
             if (_imageWriter == null) {
                 throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
             }
-            if (_scene == null) {
-                throw new MissingResourceException("missing resource", Scene.class.getName(), "");
-            }
+ //         if (_scene == null) {
+ //              throw new MissingResourceException("missing resource", Scene.class.getName(), "");
+ //                 }
             if (_camera == null) {
                 throw new MissingResourceException("missing resource", Camera.class.getName(), "");
             }
@@ -98,7 +98,7 @@ public class Render {
                 }
             }
         } catch (MissingResourceException e) {
-            throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
+            throw new UnsupportedOperationException("Not implemented yet " + e.getClassName());
         }
     }
 

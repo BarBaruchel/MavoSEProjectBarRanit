@@ -47,12 +47,17 @@ public class Geometries implements Intersectable {
         }
     }
 
+    /**
+     * The function find the intersections between the ray and the plane
+     * @param ray        - The Ray to intersect
+     * @return list of intersections point
+     */
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
-        List<Point3D> result = null;
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        List<GeoPoint> result = null;
         for (Intersectable item : _intersectables) {
             //get intersections points of a particular item from _intersectables
-            List<Point3D> itempoints = item.findIntersections(ray);
+            List<GeoPoint> itempoints = item.findGeoIntersections(ray);
             if(itempoints!= null){
                 //first time initialize result to new LinkedList
                 if(result== null){

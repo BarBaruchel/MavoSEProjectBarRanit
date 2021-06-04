@@ -12,7 +12,7 @@ import static primitives.Util.isZero;
 /**
  *The class inheritor from Geometry and get two variable that can not change
  */
-public class Tube extends RadialGeometry implements Geometry {
+public class Tube extends RadialGeometry{
 
     final Ray _axisRay;
 
@@ -28,7 +28,7 @@ public class Tube extends RadialGeometry implements Geometry {
 
     /**
      * getter ray field
-     * @return reference to the _axisRay of the Tube
+     * @return the _axisRay of the Tube
      */
     public Ray get_axisRay() {
         return _axisRay;
@@ -37,7 +37,7 @@ public class Tube extends RadialGeometry implements Geometry {
     /**
      * Function that get point
      * @param point
-     * @return null
+     * @return normalize vector
      */
     @Override
     public Vector getNormal(Point3D point) {
@@ -82,7 +82,7 @@ public class Tube extends RadialGeometry implements Geometry {
     }
 
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         return null;
     }
 }

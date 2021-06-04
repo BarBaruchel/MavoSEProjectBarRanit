@@ -21,6 +21,14 @@ public class AmbientLight {
     }
 
     /**
+     * defult Constructor that define the intensity
+     * of the ambient light to be black
+     */
+    public AmbientLight() {
+        _intensity=Color.BLACK;
+    }
+
+    /**
      * The func getIntensity return value of ambient lighting intensity
      * @return intensity (Color type)
      */

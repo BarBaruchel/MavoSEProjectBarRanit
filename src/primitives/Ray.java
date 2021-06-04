@@ -1,5 +1,8 @@
 package primitives;
 
+import geometries.Intersectable;
+import static geometries.Intersectable.GeoPoint;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -29,7 +32,7 @@ public class Ray {
 
     /**
      * getter p0 field
-     * @return reference to the p0 point of the Ray
+     * @return the p0 point of the Ray
      */
     public Point3D get_p0() {
         return _p0;
@@ -71,6 +74,40 @@ public class Ray {
             if(temp < closestDistance){
                 closestDistance =temp;
                 result =p;
+            }
+        }
+
+        return  result;
+    }
+
+    /**
+     *  find the closest Point to origin ray
+     * @param geoPointsList intersections geometry point List
+     * @return closest geometry point
+     */
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPointsList){
+        /**
+         * the near point
+         */
+        GeoPoint result =null;
+        /**
+         * initialize with a big number that we sure it will change
+         */
+        double closestDistance = Double.MAX_VALUE;
+
+        /**
+         * if the point equals to null, it`s mean there
+         * is no point that close to it
+         */
+        if(geoPointsList== null){
+            return null;
+        }
+
+        for (GeoPoint geo: geoPointsList) {
+            double temp = geo.point.distance(_p0);
+            if(temp < closestDistance){
+                closestDistance =temp;
+                result =geo;
             }
         }
 

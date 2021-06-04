@@ -11,7 +11,7 @@ import static primitives.Util.isZero;
 /**
  * class plane that heir from geometry and had two variables one from point3D type and one from vector type
  */
-public class Plane implements Geometry {
+public class Plane extends Geometry {
 
     final Point3D _q0;
     final Vector _normal;
@@ -70,7 +70,7 @@ public class Plane implements Geometry {
 
     /**
      * getter normal field
-     * @return reference to the _normal point of the Vector
+     * @return the _normal point of the Vector
      */
     public Vector get_normal() {
         return _normal;
@@ -87,18 +87,18 @@ public class Plane implements Geometry {
     }
 
     /**
-     * The function find the intersections the ray and the plane
+     * The function find the intersections between the ray and the plane
      * @param ray -that need to find where is hit
      * @return list of intersections point
      */
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         Point3D P0= ray.get_p0();   // the point that outside the plane
         Vector v= ray.get_dir();   //the vector that start on p0 to P that on the plane
 
         // if _q0 equals to p0 return immutable list 0f q0
         if (_q0.equals(P0)){
-            return List.of(_q0);
+            return List.of(new GeoPoint(this,_q0));
         }
 
         double nv= _normal.dotProduct(v);
@@ -116,6 +116,6 @@ public class Plane implements Geometry {
         t/= nv;
         Point3D p= ray.getTargetPoint(t);
         //return list of p because, there are elements that have more then one intersection
-        return List.of(p);
+        return List.of(new GeoPoint(this,p));
     }
 }
