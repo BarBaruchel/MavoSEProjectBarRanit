@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Geometries implements Intersectable {
 
-    private List<Intersectable> _intersectables = null;
+    private List<Intersectable> _intersectables =null;
 
     /**
      * Default C-tor that initializes the field-   _intersectables LinkedList

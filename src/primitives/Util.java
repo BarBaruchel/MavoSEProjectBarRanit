@@ -59,8 +59,8 @@ public abstract class Util {
 
     /**
      * Provide a real random number in range between min and max
-     * @param min
-     * @param max
+     * @param min  value (included)
+     * @param max  value (excluded)
      * @return the random value
      */
     public static double random(double min, double max) {

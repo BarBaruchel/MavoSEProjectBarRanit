@@ -35,6 +35,11 @@ public interface  Intersectable {
 
     }
 
+    /**
+     * Find intersections of a Ray with the Object(s)
+     * @param ray - The Ray to intersect
+     * @return List of Point3D intersection points
+     */
     default List<Point3D> findIntersections(Ray ray) {
         var geoList = findGeoIntersections(ray);
         return geoList == null ? null
@@ -46,7 +51,7 @@ public interface  Intersectable {
     /**
      * Find intersections of a Ray with the Object(s)
      * @param ray        - The Ray to intersect
-     * @return List of intersection points
+     * @return List of GeoPoint intersection points
      */
     List<GeoPoint> findGeoIntersections(Ray ray);
 

@@ -1,8 +1,12 @@
 package scene;
 
 import elements.AmbientLight;
+import elements.LightSource;
 import geometries.Geometries;
 import primitives.Color;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Scene class, according PDS
@@ -21,11 +25,13 @@ public class Scene {
     /**
      * Environmental lighting, default - Black lighting
      */
-    public AmbientLight ambientlight= new AmbientLight(new Color(192, 192, 192),1.d); ;
+    public AmbientLight ambientlight= new AmbientLight(Color.BLACK, 0);//new Color(192, 192, 192),1.d); ;
     /**
      * 3D model, by default it will initialize to an empty model
      */
     public Geometries geometries = null;
+
+    public List<LightSource> lights= new LinkedList<>();
 
     /**
      * A c-tor who gets the name of the scene (only)

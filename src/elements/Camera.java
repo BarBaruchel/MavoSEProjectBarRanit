@@ -6,15 +6,18 @@ import primitives.Vector;
 
 import static primitives.Util.isZero;
 
+/**
+ * The type Camera
+ */
 public class Camera {
-    final private Point3D _p0;   // the point that the rays come out from the camera
-    final private Vector _vTo;
-    final private Vector _vUp;
-    final private Vector _vRight;
+    private Point3D _p0;   // the point that the rays come out from the camera
+    private Vector _vTo;
+    private Vector _vUp;
+     private Vector _vRight;
 
-    private double _distance; //distance from _p0 to the view plane
-    private double _width;
-    private double _height;
+    private double _distance =1; //distance from _p0 to the view plane
+    private double _width =1;
+    private double _height =1;
 
     /**
     * constructor that get 3 points and create Camera`s variable
@@ -24,12 +27,11 @@ public class Camera {
     *  update _vRight to vRight= vTo X vUp
    */
   public Camera(Point3D p0, Vector vTo,Vector vUp ) {
-      _p0 = p0;
+      this._p0 = p0;
       _vTo=vTo.normalized();
       _vUp=vUp.normalized();
-
       if(!isZero(_vTo.dotProduct(_vUp))){
-        throw new IllegalArgumentException("vUp is not orthogonal to vTo ");
+          throw new IllegalArgumentException("vUp is not orthogonal to vTo ");
       }
       _vRight=_vTo.crossProduct(_vUp);  // vRight= vTo X vUp
   }

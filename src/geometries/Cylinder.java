@@ -3,8 +3,14 @@ package geometries;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
+import static primitives.Util.*;
 
 import java.util.List;
+
+import primitives.*;
+
+import java.util.List;
+import static primitives.Util.alignZero;
 
 /**
  * Class Cylinder that inheritor from Tube and get height
@@ -21,7 +27,7 @@ public class Cylinder extends Tube {   // implements Geometry
      */
     public Cylinder(Ray axisRay, double radius,double height) {
         super(axisRay,radius);
-        _height = height;
+        this._height = height;
     }
 
     /**
@@ -39,8 +45,25 @@ public class Cylinder extends Tube {   // implements Geometry
      */
     @Override
     public Vector getNormal(Point3D point) {
-        return null;
+        Point3D o = _axisRay.get_p0();
+        Vector v = _axisRay.get_dir();
+
+        // projection of P-O on the ray:
+        double t;
+        try {
+            t = alignZero(point.subtract(o).dotProduct(v));
+        } catch (IllegalArgumentException e) { // P = O
+            return v;
+        }
+
+        // if the point is at a base
+        if (t == 0 || isZero(_height - t)) // if it's close to 0, we'll get ZERO vector exception
+            return v;
+
+        o = o.add(v.scale(t));
+        return point.subtract(o).normalize();
     }
+
 
     /**
      * @return the variables of the Cylinder and print

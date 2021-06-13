@@ -5,35 +5,23 @@ import primitives.Color;
 /**
  * Ambient Light Color
  */
-public class AmbientLight {
-    /**
-     * intensity of ambient light, Color type
-     */
-    final private Color _intensity;
+public class AmbientLight extends Light{
 
     /**
-     * Constructor
+     * Constructor that get two parameter and send them to father`s c-tor
      * @param Ia  - Color`s parameter, light intensity by RGB components
      * @param Ka - Double`s parameter, constant for filler light
      */
     public AmbientLight(Color Ia, double Ka) {
-        _intensity = Ia.scale(Ka);
+        super(Ia.scale(Ka));
     }
 
     /**
-     * defult Constructor that define the intensity
-     * of the ambient light to be black
+     * default Constructor that define the intensity
+     * of the ambient light in the super class (=Light) to be black
      */
     public AmbientLight() {
-        _intensity=Color.BLACK;
-    }
-
-    /**
-     * The func getIntensity return value of ambient lighting intensity
-     * @return intensity (Color type)
-     */
-    public Color getIntensity() {
-        return _intensity;
+        super(Color.BLACK);
     }
 
 }
