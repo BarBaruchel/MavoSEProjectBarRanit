@@ -32,14 +32,5 @@ public class Triangle extends Polygon{ //implements Geometry
                 '}';
     }
 
-    /**
-     * The function call to geometries.Polygon.findGeoIntersections
-     * that find the intersections between the ray and the plane
-     * @param ray -that need to find where is hit
-     * @return list of intersections point
-     */
-    @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
-        return super.findGeoIntersections(ray);
-    }
+
 }

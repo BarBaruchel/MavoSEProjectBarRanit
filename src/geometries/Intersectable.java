@@ -1,3 +1,4 @@
+
 package geometries;
 
 import primitives.Point3D;
@@ -48,6 +49,7 @@ public interface  Intersectable {
                 .map(gp -> gp.point)
                 .collect(Collectors.toList());
     }
+
     /**
      * Find intersections of a Ray with the Object(s)
      * @param ray        - The Ray to intersect

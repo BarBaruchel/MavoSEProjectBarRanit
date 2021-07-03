@@ -48,9 +48,6 @@ public abstract class Geometry implements Intersectable {
      */
     public Geometry setEmission(Color emission) {
         this._emission = emission;
-        /**
-         * chaining method
-         */
         return  this;
     }
 

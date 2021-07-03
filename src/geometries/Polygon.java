@@ -98,8 +98,8 @@ public class Polygon extends Geometry {
             return result;
         }
 
-        Point3D P0 = ray.get_p0();
-        Vector v = ray.get_dir();
+        Point3D P0 = ray.getP0();
+        Vector v = ray.getDir();
 
         Point3D P1 = vertices.get(1);
         Point3D P2 = vertices.get(0);

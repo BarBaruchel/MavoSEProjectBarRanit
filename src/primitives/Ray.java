@@ -1,6 +1,7 @@
 package primitives;
 
 import geometries.Intersectable;
+
 import static geometries.Intersectable.GeoPoint;
 
 import java.util.List;
@@ -12,7 +13,9 @@ import static primitives.Util.isZero;
  * class Ray that get point in 3D and vector that cannot changed
  */
 public class Ray {
-    /**
+    private final static double DELTA = 0.1;
+
+      /**
      * @params _p0 pOrigin
      * @params _dir direction
      */
@@ -22,6 +25,7 @@ public class Ray {
     /**
      * constructor that get point3D`s variable and vector`s variable and initialization them
      * and normalized the vector`s variable
+     *
      * @param p0
      * @param dir direction
      */
@@ -30,66 +34,51 @@ public class Ray {
         _dir = dir.normalized();
     }
 
+    public Ray(Point3D p0, Vector dir, Vector n) {
+        Vector delta = n.scale(DELTA);
+        _p0 = p0.add(delta);
+        _dir = dir.normalized();
+    }
+
     /**
      * getter p0 field
+     *
      * @return the p0 point of the Ray
      */
-    public Point3D get_p0() {
+    public Point3D getP0() {
         return _p0;
     }
 
     /**
      * getter dir field
+     *
      * @return copy of the dir vector of the Ray
      */
-    public Vector get_dir() {
+    public Vector getDir() {
         return new Vector(_dir._head);
     }
 
     /**
-     * find the closest Point to origin ray
-     * @param pointsList intersections point List
-     * @return closest point
+     * Get point on ray at a distance from ray's head
+     *
+     * @param t distance from ray head
+     * @return the point
      */
-    public Point3D findClosestPoint(List<Point3D> pointsList){
-        /**
-         * the near point
-         */
-        Point3D result =null;
-        /**
-         * initialize with a big number that we sure it will change
-         */
-        double closestDistance = Double.MAX_VALUE;
-
-        /**
-         * if the point equals to null, it`s mean there
-         * is no point that close to it
-         */
-        if(pointsList== null){
-            return null;
-        }
-
-        for (Point3D p: pointsList) {
-            double temp = p.distance(_p0);
-            if(temp < closestDistance){
-                closestDistance =temp;
-                result =p;
-            }
-        }
-
-        return  result;
+    public Point3D getPoint(double t) {
+        return isZero(t) ? _p0 : _p0.add(_dir.scale(t));
     }
 
     /**
-     *  find the closest Point to origin ray
-     * @param geoPointsList intersections geometry point List
-     * @return closest geometry point
+     * find the closest Point to origin ray
+     *
+     * @param pointsList intersections point List
+     * @return closest point
      */
-    public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPointsList){
+    public Point3D findClosestPoint(List<Point3D> pointsList) {
         /**
          * the near point
          */
-        GeoPoint result =null;
+        Point3D result = null;
         /**
          * initialize with a big number that we sure it will change
          */
@@ -99,23 +88,59 @@ public class Ray {
          * if the point equals to null, it`s mean there
          * is no point that close to it
          */
-        if(geoPointsList== null){
+        if (pointsList == null) {
             return null;
         }
 
-        for (GeoPoint geo: geoPointsList) {
-            double temp = geo.point.distance(_p0);
-            if(temp < closestDistance){
-                closestDistance =temp;
-                result =geo;
+        for (Point3D p : pointsList) {
+            double temp = p.distance(_p0);
+            if (temp < closestDistance) {
+                closestDistance = temp;
+                result = p;
             }
         }
 
-        return  result;
+        return result;
+    }
+
+    /**
+     * find the closest Point to origin ray
+     *
+     * @param geoPointsList intersections geometry point List
+     * @return closest geometry point
+     */
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPointsList) {
+        /**
+         * the near point
+         */
+        GeoPoint result = null;
+        /**
+         * initialize with a big number that we sure it will change
+         */
+        double closestDistance = Double.MAX_VALUE;
+
+        /**
+         * if the point equals to null, it`s mean there
+         * is no point that close to it
+         */
+        if (geoPointsList == null) {
+            return null;
+        }
+
+        for (GeoPoint geo : geoPointsList) {
+            double temp = geo.point.distance(_p0);
+            if (temp < closestDistance) {
+                closestDistance = temp;
+                result = geo;
+            }
+        }
+
+        return result;
     }
 
     /**
      * the function check if the two parameters are equal
+     *
      * @param o Object (basically another Ray) to compare
      * @return true if equal, else return false
      */
@@ -135,14 +160,4 @@ public class Ray {
         return "Point3D:" + _p0 + "\n" + "Vector:" + _dir;
     }
 
-    /**
-     * @param t - A certain length
-     * @return returns the point that the ray hit
-     */
-    public Point3D getTargetPoint(double t) {
-        if (isZero(t)) {
-            return _p0;
-        }
-        return _p0.add(_dir.scale(t));
-    }
 }

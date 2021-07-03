@@ -1,4 +1,6 @@
+
 package geometries;
+
 
 import primitives.Point3D;
 import primitives.Ray;
@@ -16,10 +18,10 @@ public class Sphere extends RadialGeometry{
 
     /**
      * The constructor get Point3D variable and radius and initialized
-     * @param center
      * @param radius
+     * @param center
      */
-    public Sphere(Point3D center, double radius) {
+    public Sphere(double radius, Point3D center) {
         super(radius);
         _center = center;
     }
@@ -62,8 +64,8 @@ public class Sphere extends RadialGeometry{
      */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
-        Point3D P0 = ray.get_p0();
-        Vector v = ray.get_dir();
+        Point3D P0 = ray.getP0();
+        Vector v = ray.getDir();
 
         if (P0.equals(_center)) {
             return List.of(new GeoPoint(this,_center.add(v.scale(_radius))));
@@ -84,16 +86,16 @@ public class Sphere extends RadialGeometry{
         double t2 = alignZero(tm + th);
 
         if (t1 > 0 && t2 > 0) {
-            Point3D P1 =ray.getTargetPoint(t1);
-            Point3D P2 =ray.getTargetPoint(t2);
+            Point3D P1 =ray.getPoint(t1);
+            Point3D P2 =ray.getPoint(t2);
             return List.of(new GeoPoint(this,P1),new GeoPoint(this, P2));
         }
         if (t1 > 0) {
-            Point3D P1 =ray.getTargetPoint(t1);
+            Point3D P1 =ray.getPoint(t1);
             return List.of(new GeoPoint(this,P1));
         }
         if (t2 > 0) {
-            Point3D P2 =ray.getTargetPoint(t2);
+            Point3D P2 =ray.getPoint(t2);
             return List.of(new GeoPoint(this,P2));
         }
         return null;

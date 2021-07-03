@@ -67,19 +67,19 @@ public class CameraRayIntersectionsIntegrationTests {
                 new Vector(0, -1, 0));
 
         // TC01: The Sphere is smaller then the View plane - expected to 2 points are been hit
-        assertCountIntersections(cam1, new Sphere( new Point3D(0, 0, -3), 1), 2);
+        assertCountIntersections(cam1, new Sphere(1, new Point3D(0, 0, -3)), 2);
 
         // TC02:The Sphere is bigger then the View plane , the ray can hit the Sphere twice (from inside to outside), 9 rays hit -  expected to 18 points are been hit
-        assertCountIntersections(cam2, new Sphere( new Point3D(0, 0, -2.5), 2.5), 18);
+        assertCountIntersections(cam2, new Sphere(2.5, new Point3D(0, 0, -2.5)), 18);
 
         // TC03: The Sphere is Medium in ratio to the View plane, 5 rays hit - expected to 10 points are been hit
-        assertCountIntersections(cam2, new Sphere( new Point3D(0, 0, -2),2), 10);
+        assertCountIntersections(cam2, new Sphere(2, new Point3D(0, 0, -2)), 10);
 
         // TC04: The point of the camera is inside the Sphere- will be 9 points because there are no back points for the camera - expected to 9 points are been hit
-        assertCountIntersections(cam2, new Sphere( new Point3D(0, 0, -1),4), 9);
+        assertCountIntersections(cam2, new Sphere(4, new Point3D(0, 0, -1)), 9);
 
         // TC05: The camera is beyond the Sphere so there is no point of intersection - expected to 0 points are been hit
-        assertCountIntersections(cam1, new Sphere(new Point3D(0, 0, 1), 0.5), 0);
+        assertCountIntersections(cam1, new Sphere(0.5, new Point3D(0, 0, 1)), 0);
     }
 
     /**

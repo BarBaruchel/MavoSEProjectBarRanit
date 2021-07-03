@@ -1,7 +1,8 @@
+
 package renderer;
 
 import elements.LightSource;
-import geometries.Intersectable;
+
 import static geometries.Intersectable.GeoPoint;
 import static primitives.Util.alignZero;
 
@@ -13,13 +14,13 @@ import java.util.List;
 /**
  * RayTracerBasic heritage from renderer.RayTracerBase
  */
-public class RayTracerBasic extends RayTracerBase {
+public class BasicRayTracer extends RayTracerBase {
 
     /**
      * c-tor that get Scene object and And operates the father class constructor
      * @param scene - Scene type variable
      */
-    public RayTracerBasic(Scene scene) {
+    public BasicRayTracer(Scene scene) {
         super(scene);
     }
 
@@ -55,7 +56,7 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     private Color calcLocalEffects(GeoPoint geoPoint, Ray ray) {
-        Vector v = ray.get_dir ();
+        Vector v = ray.getDir();
         Vector n = geoPoint.geometry.getNormal(geoPoint.point);
         double nv = alignZero(n.dotProduct(v));
         if (nv == 0) {

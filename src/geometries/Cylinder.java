@@ -1,3 +1,4 @@
+
 package geometries;
 
 import primitives.Point3D;
@@ -5,11 +6,6 @@ import primitives.Ray;
 import primitives.Vector;
 import static primitives.Util.*;
 
-import java.util.List;
-
-import primitives.*;
-
-import java.util.List;
 import static primitives.Util.alignZero;
 
 /**
@@ -45,8 +41,8 @@ public class Cylinder extends Tube {   // implements Geometry
      */
     @Override
     public Vector getNormal(Point3D point) {
-        Point3D o = _axisRay.get_p0();
-        Vector v = _axisRay.get_dir();
+        Point3D o = _axisRay.getP0();
+        Vector v = _axisRay.getDir();
 
         // projection of P-O on the ray:
         double t;

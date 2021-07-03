@@ -8,7 +8,7 @@ import static primitives.Point3D.ZERO;
  * class vector that get variable from Point3D type
  */
 public class Vector {
-    Point3D _head;
+      Point3D _head;
 
     /**
      * constructor that get point and check if it ZERO
@@ -20,7 +20,7 @@ public class Vector {
         if (head.equals(ZERO)) {
             throw new IllegalArgumentException("Vector head can not be Point(0,0,0)");
         }
-        _head = new Point3D(head._x._coord, head._y._coord, head._z._coord);
+        _head = head;
     }
 
     /**
@@ -132,18 +132,21 @@ public class Vector {
 
     /**
      * This function do vector subtraction
-     * @param vector the second vector
+     * @param other the second vector
      * @return new Vector(u-v)
      */
-    public Vector subtract(Vector vector) {
-        double x = _head._x._coord - vector._head._x._coord;    //subtraction the the point x int the first Vector with the x point in the second Vector
-        double y = _head._y._coord - vector._head._y._coord;   //subtraction the the point y int the first Vector with the y point in the second Vector
-        double z = _head._z._coord - vector._head._z._coord;   //subtraction the the point z int the first Vector with the z point in the second Vector
+    public Vector subtract(Vector other) {
+        return _head.subtract(other._head);
 
-        /**
-         * return a new vector with the 3 points
-         */
-        return new Vector(new Point3D(x, y, z));
+
+   //   double x = _head._x._coord - vector._head._x._coord;    //subtraction the the point x int the first Vector with the x point in the second Vector
+   //   double y = _head._y._coord - vector._head._y._coord;   //subtraction the the point y int the first Vector with the y point in the second Vector
+   //   double z = _head._z._coord - vector._head._z._coord;   //subtraction the the point z int the first Vector with the z point in the second Vector
+
+   //   /**
+   //    * return a new vector with the 3 points
+   //    */
+   //   return new Vector(new Point3D(x, y, z));
     }
 
     /**
@@ -165,10 +168,9 @@ public class Vector {
          *  that accordingly multiplication and return that
          */
         return new Vector(
-                new Point3D(
                         scalar * _head._x._coord,
                         scalar * _head._y._coord,
-                        scalar * _head._z._coord));
+                        scalar * _head._z._coord);
     }
 
     /**
@@ -188,11 +190,11 @@ public class Vector {
          *  create a new Vector and do the subtraction between the two points
          *  that accordingly multiplication and return that
          */
-        return new Vector(new Point3D(
+        return new Vector(
                 u2 * v3 - u3 * v2,
                 u3 * v1 - u1 * v3,
                 u1 * v2 - u2 * v1
-        ));
+        );
     }
 
     /**

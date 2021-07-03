@@ -41,8 +41,8 @@ public class Tube extends RadialGeometry{
      */
     @Override
     public Vector getNormal(Point3D point) {
-        Point3D P0=_axisRay.get_p0();
-        Vector v=_axisRay.get_dir();
+        Point3D P0=_axisRay.getP0();
+        Vector v=_axisRay.getDir();
         Vector P0_P= point.subtract(P0);
 
         double t= alignZero(v.dotProduct(P0_P));

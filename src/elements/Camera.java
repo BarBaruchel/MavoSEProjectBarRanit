@@ -46,34 +46,47 @@ public class Camera {
      */
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
 
-      Point3D Pc = _p0.add(_vTo.scale(_distance));  // Image center: Pc= p0+ vTo
+        double rX = _width / nX;
+        double rY = _height / nY;
+        double xJ = (j - (nX - 1) / 2d) * rX;
+        double yIminus = (i - (nY - 1) / 2d) * rY;
 
-        //Ratio (pixel width & height):
-        double Rx = _width / nX;
-        double Ry = _height / nY;
+        Point3D pIJ = _p0.add(_vTo.scale(_distance)); // the view plane center point
+        if (!isZero(xJ))
+            pIJ = pIJ.add(_vRight.scale(xJ));
+        if (!isZero(yIminus))
+            pIJ = pIJ.add(_vUp.scale(-yIminus)); // it's also possible to do pIJ.subtract(vUp.scale(yIminus));
 
-        Point3D Pij = Pc;
-        Vector Vij=Pij.subtract(_p0); //vector that goes from _p0 TO Pij
-
-        double Xj = (j - (nX - 1) / 2d) * Rx;
-        double Yi = -(i - (nY - 1) / 2d) * Ry;
+        return new Ray(_p0, pIJ.subtract(_p0));
 
 
-        if (isZero(Xj) && isZero(Yi)) {  //  if Yi=0 and Xi=0, then Yi = Pc
-            return new Ray(_p0, Pij.subtract(_p0));
-        }
-        if (isZero(Xj)) {
-            Pij = Pc.add(_vUp.scale(Yi));
-            return new Ray(_p0, Pij.subtract(_p0));
-        }
-        if (isZero(Yi)) {
-            Pij = Pc.add(_vRight.scale(Xj));
-            return new Ray(_p0, Pij.subtract(_p0));
-        }
 
-        Pij = Pc.add(_vRight.scale(Xj).add(_vUp.scale(Yi)));
-        Vij=Pij.subtract(_p0);
-        return new Ray(_p0, Vij);
+     // Point3D Pc = _p0.add(_vTo.scale(_distance));  // Image center: Pc= p0+ vTo
+
+     //   //Ratio (pixel width & height):
+     //   double Rx = _width / nX;
+     //   double Ry = _height / nY;
+//
+     //   Point3D Pij = Pc;
+     //   Vector Vij; //vector that goes from _p0 TO Pij
+//
+     //   double Xj = (j - (nX - 1) / 2d) * Rx;
+     //   double Yi = -(i - (nY - 1) / 2d) * Ry;
+//
+//
+     //   if (isZero(Xj) && isZero(Yi)) {  //  if Yi=0 and Xi=0, then Yi = Pc
+     //      Vij=Pij.subtract(_p0);
+     //   }
+     //   else if (isZero(Xj)) {
+     //       Pij = Pij.add(_vUp.scale(Yi));
+     //   }
+     //   else if (isZero(Yi)) {
+     //       Pij = Pij.add(_vRight.scale(Xj));
+     //   }
+//
+     //   Pij = Pc.add(_vRight.scale(Xj).add(_vUp.scale(Yi)));
+     //   Vij=Pij.subtract(_p0);
+     //   return new Ray(_p0, Vij);
 
     }
 
