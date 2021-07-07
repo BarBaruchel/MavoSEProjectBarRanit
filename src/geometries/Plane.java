@@ -6,6 +6,7 @@ import primitives.Vector;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 /**
@@ -92,29 +93,35 @@ public class Plane extends Geometry {
      * @return list of intersections point
      */
     @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
-        Point3D P0= ray.getP0();   // the point that outside the plane
-        Vector v= ray.getDir();   //the vector that start on p0 to P that on the plane
+    public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
+        Point3D P0 = ray.getP0();   // the point that outside the plane
+        Vector v = ray.getDir();   //the vector that start on p0 to P that on the plane
 
         // if _q0 equals to p0 return immutable list 0f q0
-        if (_q0.equals(P0)){
-            return List.of(new GeoPoint(this,_q0));
+        if (_q0.equals(P0)) {
+            return List.of(new GeoPoint(this, _q0));
         }
 
-        double nv= _normal.dotProduct(v);
+        double nv = _normal.dotProduct(v);
 
         /**
          * if the dot Product between n and v is zero that mean they vertical to each other
          * and the ray is lying in the plane axis
          * therefore return null
          */
-        if(isZero(nv)){
-            return  null;
+        if (isZero(nv)) {
+            return null;
         }
 
-        double t= _normal.dotProduct(_q0.subtract(P0))/ nv;
-        Point3D p= ray.getPoint(t);
-        //return list of p because, there are elements that have more then one intersection
-        return List.of(new GeoPoint(this,p));
+        /**
+         * t is the distance from the point
+         */
+        double t = _normal.dotProduct(_q0.subtract(P0)) / nv;
+        if ( t>0 && alignZero(t - maxDistance) <= 0) {
+            Point3D p = ray.getPoint(t);
+            //return list of p because, there are elements that have more then one intersection
+            return List.of(new GeoPoint(this, p));
+        }
+        return null;
     }
 }

@@ -16,8 +16,8 @@ public class Ray {
     private final static double DELTA = 0.1;
 
       /**
-     * @params _p0 pOrigin
-     * @params _dir direction
+     * @params _p0 pOrigin  , Ray head point
+     * @params _dir direction , Ray direction vector
      */
     final Point3D _p0;
     final Vector _dir;
@@ -38,6 +38,27 @@ public class Ray {
         Vector delta = n.scale(DELTA);
         _p0 = p0.add(delta);
         _dir = dir.normalized();
+    }
+
+
+    /**
+     * We created instead the lightDirection we had,
+     * We wanted something that comes out of point and a bit shifted in the direction of the lightdirection
+     *
+     * c-tor that get 4 variables:
+     * @param point                   ray beginning point
+     * @param lightDirection          ray direction vector
+     * @param n                       line vector for point p movement
+     * @param DELTA                    equal 0.1
+     */
+    public Ray(Point3D point, Vector lightDirection, Vector n, double DELTA) {
+        /**
+         * if n.dotProduct(lightDirection) it`s positive (bigger then zero)
+         * then add DELTA , else minus DELTA
+         */
+         Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : - DELTA);
+         _p0 = point.add(delta);
+         _dir= lightDirection.normalized();
     }
 
     /**
@@ -61,11 +82,11 @@ public class Ray {
     /**
      * Get point on ray at a distance from ray's head
      *
-     * @param t distance from ray head
+     * @param delta distance from ray head
      * @return the point
      */
-    public Point3D getPoint(double t) {
-        return isZero(t) ? _p0 : _p0.add(_dir.scale(t));
+    public Point3D getPoint(double delta) {
+        return isZero(delta) ? _p0 : _p0.add(_dir.scale(delta));
     }
 
     /**

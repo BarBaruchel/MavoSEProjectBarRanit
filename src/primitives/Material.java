@@ -4,9 +4,28 @@ package primitives;
  * Class Material - represents the material of objects
  */
 public class Material {
+    /**
+     * Diffusion attenuation
+     */
     public double Kd =0d;
+    /**
+     * Specular attenuation
+     */
     public double Ks=0d;
+    /**
+     * Specular shininess degree
+     */
     public int nShininess=0;
+    /**
+     * Reflection attenuation, for default there is no reflection at all
+     */
+    public double Kr =0d;
+    /**
+     * Transparency attenuation
+     */
+    public double Kt = 0d;
+
+
 
     /**
      * setter Kd field
@@ -38,4 +57,18 @@ public class Material {
         return this;
     }
 
+    /**
+     * setter kr field
+     * @param kr   -coefficient
+     * @return the Material object itself for chaining calls
+     */
+    public Material setKr(double kr) {
+        Kr = kr;
+        return this;
+    }
+
+    public Material setKt(double kt) {
+        Kt = kt;
+        return this;
+    }
 }

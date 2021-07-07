@@ -25,7 +25,7 @@ public class Scene {
     /**
      * Environmental lighting, default - Black lighting
      */
-    public AmbientLight ambientlight= new AmbientLight(Color.BLACK, 0);//new Color(192, 192, 192),1.d); ;
+    public AmbientLight ambientlight= new AmbientLight(Color.BLACK, 0);//new Color(192, 192, 192),1.d);
     /**
      * 3D model, by default it will initialize to an empty model
      */
