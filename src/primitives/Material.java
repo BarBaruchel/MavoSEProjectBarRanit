@@ -71,4 +71,12 @@ public class Material {
         Kt = kt;
         return this;
     }
+
+    public double getKt() {
+        return Kt;
+    }
+
+    public double getKr() {
+        return Kr;
+    }
 }

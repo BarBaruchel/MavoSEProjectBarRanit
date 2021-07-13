@@ -138,15 +138,6 @@ public class Vector {
     public Vector subtract(Vector other) {
         return _head.subtract(other._head);
 
-
-   //   double x = _head._x._coord - vector._head._x._coord;    //subtraction the the point x int the first Vector with the x point in the second Vector
-   //   double y = _head._y._coord - vector._head._y._coord;   //subtraction the the point y int the first Vector with the y point in the second Vector
-   //   double z = _head._z._coord - vector._head._z._coord;   //subtraction the the point z int the first Vector with the z point in the second Vector
-
-   //   /**
-   //    * return a new vector with the 3 points
-   //    */
-   //   return new Vector(new Point3D(x, y, z));
     }
 
     /**

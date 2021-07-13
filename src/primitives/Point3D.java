@@ -26,27 +26,6 @@ public class Point3D {
         _z = new Coordinate(z);
     }
 
-//    /**
-//     * @return _x
-//     */
-//    public double get_x() {
-//        return _x._coord;
-//    }
-//
-//    /**
-//     * @return _y
-//     */
-//    public double get_y() {
-//        return _y._coord;
-//    }
-//
-//    /**
-//     * @return _z
-//     */
-//    public double get_z() {
-//        return _z._coord;
-//    }
-
     /**
      * the function check if the two parameters are equal
      *
@@ -82,25 +61,6 @@ public class Point3D {
                 _z._coord - other._z._coord);
     }
 
-
-
-
- //  public Vector subtract(Point3D ptOrigin) {
- //      /**
- //       * create a new Point 3D and do the subtraction between the two points
- //       * and return that
- //       */
- //      Point3D head = new Point3D(
- //              ptOrigin._x._coord - _x._coord,
- //              ptOrigin._y._coord - _y._coord,
- //              ptOrigin._z._coord - _z._coord
- //      );
- //      if (ZERO.equals(head)) {
- //          throw new IllegalArgumentException("Vector head cannot be Point(0,0,0)");
- //      }
-
- //      return new Vector(head);
- //  }
 
   /**
      * calulte the squared distance between 2 3D points
