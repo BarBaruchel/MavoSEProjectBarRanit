@@ -45,7 +45,6 @@ public class Camera {
      * @return               The generated ray
      */
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
-
         double rX = _width / nX;
         double rY = _height / nY;
         double xJ = (j - (nX - 1) / 2d) * rX;
@@ -58,35 +57,6 @@ public class Camera {
             pIJ = pIJ.add(_vUp.scale(-yIminus)); // it's also possible to do pIJ.subtract(vUp.scale(yIminus));
 
         return new Ray(_p0, pIJ.subtract(_p0));
-
-
-
-     // Point3D Pc = _p0.add(_vTo.scale(_distance));  // Image center: Pc= p0+ vTo
-
-     //   //Ratio (pixel width & height):
-     //   double Rx = _width / nX;
-     //   double Ry = _height / nY;
-//
-     //   Point3D Pij = Pc;
-     //   Vector Vij; //vector that goes from _p0 TO Pij
-//
-     //   double Xj = (j - (nX - 1) / 2d) * Rx;
-     //   double Yi = -(i - (nY - 1) / 2d) * Ry;
-//
-//
-     //   if (isZero(Xj) && isZero(Yi)) {  //  if Yi=0 and Xi=0, then Yi = Pc
-     //      Vij=Pij.subtract(_p0);
-     //   }
-     //   else if (isZero(Xj)) {
-     //       Pij = Pij.add(_vUp.scale(Yi));
-     //   }
-     //   else if (isZero(Yi)) {
-     //       Pij = Pij.add(_vRight.scale(Xj));
-     //   }
-//
-     //   Pij = Pc.add(_vRight.scale(Xj).add(_vUp.scale(Yi)));
-     //   Vij=Pij.subtract(_p0);
-     //   return new Ray(_p0, Vij);
 
     }
 
