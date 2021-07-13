@@ -67,15 +67,28 @@ public class Material {
         return this;
     }
 
+    /**
+     * setter t field
+     * @param kt   -coefficient
+     * @return the Material object itself for chaining calls
+     */
     public Material setKt(double kt) {
         Kt = kt;
         return this;
     }
 
+    /**
+     * getter Kt field
+     * @return kt
+     */
     public double getKt() {
         return Kt;
     }
 
+    /**
+     * getter Kr field
+     * @return Kr
+     */
     public double getKr() {
         return Kr;
     }

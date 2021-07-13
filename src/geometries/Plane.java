@@ -99,7 +99,8 @@ public class Plane extends Geometry {
 
         // if _q0 equals to p0 return immutable list 0f q0
         if (_q0.equals(P0)) {
-            return List.of(new GeoPoint(this, _q0));
+            //return List.of(new GeoPoint(this, _q0));
+            return null;
         }
 
         double nv = _normal.dotProduct(v);
@@ -118,6 +119,7 @@ public class Plane extends Geometry {
          */
         double t = _normal.dotProduct(_q0.subtract(P0)) / nv;
         if ( t>0 && alignZero(t - maxDistance) <= 0) {
+       // if ( t>0 ) {
             Point3D p = ray.getPoint(t);
             //return list of p because, there are elements that have more then one intersection
             return List.of(new GeoPoint(this, p));

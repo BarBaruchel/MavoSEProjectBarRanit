@@ -31,23 +31,24 @@ public class TheBestPhoto {
         scene.setAmbientLight(new AmbientLight(new primitives.Color(java.awt.Color.WHITE), 0.1));
 
 
-        Triangle triangle1 = new Triangle(new Point3D( 0, 10, -300), new Point3D(  -50, 50, -300), new Point3D(  -50, -50, -300) );
+        //up left
+        Triangle triangle1 = new Triangle(new Point3D( 30, 10, -300), new Point3D(  -20, 50, -300), new Point3D(  -20, -50, -300) );
         triangle1.setEmission(new primitives.Color(new Color(31,195,243)))
-                .setMaterial(new Material().setKr(0.5));
-        Triangle triangle2 = new Triangle(new Point3D( 0, 10, -300), new Point3D( 0, -90, -300), new Point3D(  -50, -50, -300));
+                .setMaterial(new Material().setKt(1));
+        Triangle triangle2 = new Triangle(new Point3D( 30, 10, -300), new Point3D( 30, -90, -300), new Point3D(  -20, -50, -300));
         triangle2.setEmission(new primitives.Color(new Color(0,99,175)))
-                .setMaterial(new Material().setKr(0.5));
-        Triangle triangle3 = new Triangle(new Point3D( 0, 10, -300),new Point3D(  50, 50, -300), new Point3D(  -50, -50, -300));
-        triangle2.setEmission(new primitives.Color(new Color(37,33,96)))
-                .setMaterial(new Material().setKr(0.5));
-        Triangle triangle4 = new Triangle(new Point3D( 0, 10, -300),new Point3D( 0, -90, -300), new Point3D(  -50, -50, -300));
+                .setMaterial(new Material().setKt(1));
+        Triangle triangle3 = new Triangle(new Point3D( 30, 10, -300),new Point3D(  80, 50, -300), new Point3D(  80, -50, -300));
+        triangle3.setEmission(new primitives.Color(new Color(37,33,96)))
+               .setMaterial(new Material().setKt(1));
+        Triangle triangle4 = new Triangle(new Point3D( 30, 10, -300),new Point3D( 30, -90, -300), new Point3D(  80, -50, -300));
         triangle4.setEmission(new primitives.Color(new Color(158,31,98)))
-                .setMaterial(new Material().setKr(0.5));
+               .setMaterial(new Material().setKt(1));
 
 
-        Sphere sphere = new Sphere( 150,new Point3D(0,10,-300));
+        Sphere sphere = new Sphere( 150,new Point3D(30,10,-300));
         sphere.setEmission(new primitives.Color(new Color(0,20,20)))
-               .setMaterial(new Material().setKd(0.2).setKt(1).setKs(0.6).setShininess(20));
+               .setMaterial(new Material().setKd(0.8).setKt(1).setKs(0.6).setShininess(20));
 
       //  Material material = new Material();
        // material.setShininess(20);
@@ -56,9 +57,17 @@ public class TheBestPhoto {
 
        // sphere.setMaterial(material);
 
-        Plane plane1=new Plane(new Point3D (-200, 0, -200), new Vector(new Point3D(-3,0,-1)));
-        plane1.setEmission(new primitives.Color(new Color(20,20,20)))
-                .setMaterial(new Material().setKd(0.5).setKt(0).setKs(1).setShininess(20).setKr(0.6));;
+      //  Plane plane1=new Plane(new Point3D (-200, 0, -230), new Vector(new Point3D(-3,0,-1)));
+      //  plane1.setEmission(new primitives.Color(new Color(20,20,20)))
+       //         .setMaterial(new Material().setKd(0.5).setKt(0).setKs(1).setShininess(20).setKr(0.6));
+        Triangle triangleMiror1= new Triangle(new Point3D(-500,500,-500),new Point3D(-500,-500,-500), new Point3D(500, -500, -1000));
+        triangleMiror1.setEmission(new primitives.Color(new Color(20,20,20)))
+                .setMaterial(new Material().setKd(0.5).setKt(0).setKs(1).setShininess(20).setKr(0.8));
+        Triangle triangleMiror2= new Triangle(new Point3D(-502,500,-500),new Point3D(500,500,-1000), new Point3D(498, -500, -1000));
+        triangleMiror2.setEmission(new primitives.Color(new Color(20,20,20)))
+                .setMaterial(new Material().setKd(0.5).setKt(0).setKs(1).setShininess(20).setKr(0.8));
+
+
       //  material.setShininess(20);
        // material.setKt(0);
       //  material.setKr(0.6);
@@ -79,7 +88,9 @@ public class TheBestPhoto {
         scene.geometries.add(triangle3);
         scene.geometries.add(triangle4);
         scene.geometries.add(sphere);
-        scene.geometries.add(plane1);
+        //scene.geometries.add(plane1);
+        scene.geometries.add(triangleMiror1);
+        scene.geometries.add(triangleMiror2);
 
 
         ImageWriter imageWriter = new ImageWriter("TheBestPhoto", 500, 500);

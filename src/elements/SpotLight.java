@@ -41,10 +41,6 @@ public class SpotLight extends PointLight{
         double cos = alignZero(l.dotProduct(_direction));
         if (cos <= 0) return Color.BLACK;
         return baseIntensity.scale(cos); //return baseIntensity*(max(0,dir*l))
-//
-//     double cosTetha= _direction.dotProduct(getL(p));
-//      Color intensity= super.getIntensity(p);
-//      return intensity.scale(Math.max(0,cosTetha));
     }
 
 }
