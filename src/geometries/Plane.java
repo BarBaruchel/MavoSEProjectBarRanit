@@ -14,7 +14,13 @@ import static primitives.Util.isZero;
  */
 public class Plane extends Geometry {
 
+    /**
+     * Point 3D on thr plane
+     */
     final Point3D _q0;
+    /**
+     *  normal to the point _q0
+     */
     final Vector _normal;
 
     /**

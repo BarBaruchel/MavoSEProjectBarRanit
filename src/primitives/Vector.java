@@ -53,7 +53,7 @@ public class Vector {
     }
 
     /**
-     * the function get to vectors
+     * the function get two vectors
      * @param v the second vector
      * @return the result of two vectors multiplied by a vector
      */

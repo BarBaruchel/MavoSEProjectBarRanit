@@ -67,7 +67,7 @@ public class Camera {
     }
 
     /**
-     * Constructs Ray through a single pixel of the screen in specific resolution
+     * Constructs Ray through a single pixel of the screen (in specific resolution)
      *
      * @param nX             Number of pixels in X axis
      * @param nY             Number of pixels in Y axis

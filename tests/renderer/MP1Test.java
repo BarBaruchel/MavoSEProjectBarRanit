@@ -32,15 +32,21 @@ public class MP1Test {
     @Test
     public void projectP1Test() {
         scene.lights.add(new SpotLight(new Color(300, 0, 0), new Point3D(0, 50, -750),//
-                new Vector(0, -50, -1)) //
+                new Vector(0, -50, -1))
                 .setKl(4E-5).setKq(2E-7));
         scene.lights.add(new PointLight(new Color(0, 0, 200), new Point3D(250, 25, -600))//
                 .setKl(0.00001).setKq(0.000001));
 
         scene.lights.add(new DirectionalLight( new Color(150, 150, 150),new Vector(0, 0, -1)));
 
+        /**
+         * camera from the side of the scene
+         */
         Camera camera = new Camera(new Point3D(0, -750, 0), new Vector(0, 0.35, -0.35), new Vector(0, 0.35, 0.35))
                 .setViewPlaneSize(150, 150).setDistance(400);
+        /**
+         * camera above the scene
+         */
         //Camera camera = new Camera(new Point3D(0, 50, 0), new Vector(0, 0, -1), new Vector(1, 0, 0))
         //        .setViewPlaneSize(150, 150).setDistance(400);
 
@@ -54,9 +60,9 @@ public class MP1Test {
         Point3D p5 = new Point3D(-104.4, -10, -800);
         Point3D p6 = new Point3D(-104.4, 110, -800);
 
-        //Sphere downSpr = new Sphere(60,new Point3D(0, 50, -870) );
-       // downSpr.setEmission(new Color(0, 0, 0)).setMaterial(new Material().setKt(0.5).
-       //         setShininess(100).setKs(0.5).setKd(0.5));
+        /**
+         * the poles of the game (that hold the plane - two triangles in each side)
+         */
         /**
          * right side
          */
@@ -78,6 +84,9 @@ public class MP1Test {
 
         Color tableCol  = new Color(20, 20, 20);
         Material triangleMat = new Material().setKr(0.7).setKd(0.3).setKs(1).setShininess(50).setKt(0.4);
+        /**
+         * plane of the game ablon
+         */
         Triangle t1 = new Triangle(center, p1, p2); // up right
         Triangle t2 = new Triangle(center, p2, p3); // middle right
         Triangle t3 = new Triangle(center, p3, p4); // down right
@@ -181,7 +190,7 @@ public class MP1Test {
 
 
         scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
-        scene.geometries.add(/*downSpr,*/ tBase1, tBase2, tBase3, tBase4, t1, t2, t3, t4, t5, t6, //
+        scene.geometries.add( tBase1, tBase2, tBase3, tBase4, t1, t2, t3, t4, t5, t6, //
                 /*s1,s2,*/  s3, s4, s5, //
                 s11, /*s12, s13,*/ s14, s15, s16, //
                 s21, s21_1, s21_2 ,s21_3 ,s22, s22_1,s22_2, s22_3,s23, s23_1, //
@@ -189,7 +198,7 @@ public class MP1Test {
                 s81, /*s82, s83,*/ s84, s85, s86,//
                /*s91, s92,*/s93, s94, s95);
 
-        ImageWriter imageWriter = new ImageWriter("P1 5x5", 1000, 1000);
+        ImageWriter imageWriter = new ImageWriter("P1 17x17", 1000, 1000);
         Render render = new Render() //
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
@@ -201,7 +210,7 @@ public class MP1Test {
         boolean improvement = true;
 
         if (improvement){
-            int resolution= 5;
+            int resolution= 17;
             render.renderImageImprov(resolution);
             render.writeToImage();
         }
