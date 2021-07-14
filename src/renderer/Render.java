@@ -5,6 +5,7 @@ import primitives.Color;
 import primitives.Ray;
 import scene.Scene;
 
+import java.util.List;
 import java.util.MissingResourceException;
 
 /**
@@ -86,6 +87,57 @@ public class Render {
                 }
             }
         } catch (MissingResourceException e) {
+            throw new UnsupportedOperationException("Not implemented yet " + e.getClassName());
+        }
+    }
+
+    /**
+     * The renderImageImprov() method does not return any value
+     * the function first check that a non-empty value has been entered in all fields
+     * (and in case of lack throws an appropriate exception)
+     * the function has a loop on all the pixels of the ViewPlane,
+     * for each pixel a ray will be built whit constructRaysThroughPixel help,
+     * and for each ray we will get a color from the ray comb.
+     * The color will be put in the suitable pixel of the image maker (writePixel)
+     *
+     * @param resolution    The amount of rays sent to calculate the average color point in a pixel
+     */
+    public void renderImageImprov(int resolution) {
+        try {
+            if (_imageWriter == null) {
+                throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
+            }
+            if (_camera == null) {
+                throw new MissingResourceException("missing resource", Camera.class.getName(), "");
+            }
+            if (_rayTracerBase == null) {
+                throw new MissingResourceException("missing resource", RayTracerBase.class.getName(), "");
+            }
+
+            //rendering the image
+            int nX = _imageWriter.getNx();
+            int nY = _imageWriter.getNy();
+            Color pixelColor = Color.BLACK;
+            for (int i = 0; i < nY; i++) {
+                for (int j = 0; j < nX; j++) {
+                   List<Ray> rays = _camera.constructRaysThroughPixel(nX, nY, j, i, resolution);
+                    /**
+                     * we put into pixelColor the color of the pixel from the _rayTracerBase
+                     */
+                    for (Ray ray : rays){
+                     //   Color color= _rayTracerBase.traceRay(ray);
+                         pixelColor=pixelColor.add(_rayTracerBase.traceRay(ray));
+                    }
+                    /**
+                     * _imageWriter will brush the pixel in the suitable color
+                     * calculate the average color of the ray on the pixel
+                     */
+                    _imageWriter.writePixel(j, i, pixelColor.reduce(rays.size()));
+                    pixelColor = Color.BLACK;
+                }
+            }
+        }
+        catch (MissingResourceException e) {
             throw new UnsupportedOperationException("Not implemented yet " + e.getClassName());
         }
     }

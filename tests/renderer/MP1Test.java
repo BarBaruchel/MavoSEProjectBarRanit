@@ -27,7 +27,7 @@ public class MP1Test {
     private Scene scene = new Scene("Test scene");
 
     /**
-     * test for mini-project, build ablon model picture
+     * test for mini-project 1 , build ablon model picture
      */
     @Test
     public void projectP1Test() {
@@ -189,14 +189,26 @@ public class MP1Test {
                 s81, /*s82, s83,*/ s84, s85, s86,//
                /*s91, s92,*/s93, s94, s95);
 
-        ImageWriter imageWriter = new ImageWriter("P1", 1000, 1000);
+        ImageWriter imageWriter = new ImageWriter("P1 5x5", 1000, 1000);
         Render render = new Render() //
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
                 .setRayTracer(new BasicRayTracer(scene));
-//if
-        render.renderImage();
-        render.writeToImage();
+
+        /**
+         * if improvement variable  is true we call to the improvement function (anti- alias ,Super-sampling);
+         */
+        boolean improvement = true;
+
+        if (improvement){
+            int resolution= 5;
+            render.renderImageImprov(resolution);
+            render.writeToImage();
+        }
+        else{
+            render.renderImage();
+            render.writeToImage();
+        }
     }
 
 }

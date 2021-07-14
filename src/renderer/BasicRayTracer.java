@@ -124,7 +124,7 @@ public class BasicRayTracer extends RayTracerBase {
     }
 
     /**
-     * The function build refracted ray,
+     * The function build refracted ray (the broken ray inside the object),
      * from the given point in continuation of the original ray.
      * @param n     - normal at the point
      * @param point - the required point

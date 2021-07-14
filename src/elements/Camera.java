@@ -4,6 +4,9 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import static primitives.Util.isZero;
 
 /**
@@ -50,6 +53,9 @@ public class Camera {
         double xJ = (j - (nX - 1) / 2d) * rX;
         double yIminus = (i - (nY - 1) / 2d) * rY;
 
+        /**
+         * pIJ is the center Point of the square pixel
+         */
         Point3D pIJ = _p0.add(_vTo.scale(_distance)); // the view plane center point
         if (!isZero(xJ))
             pIJ = pIJ.add(_vRight.scale(xJ));
@@ -59,6 +65,79 @@ public class Camera {
         return new Ray(_p0, pIJ.subtract(_p0));
 
     }
+
+    /**
+     * Constructs Ray through a single pixel of the screen in specific resolution
+     *
+     * @param nX             Number of pixels in X axis
+     * @param nY             Number of pixels in Y axis
+     * @param j              The current pixel in Y axis
+     * @param i              The current pixel in X axis
+     * @param resolution      The amount of rays sent to calculate the average color point in a pixel
+     * @return  The generated ray from the calculation
+     */
+   public List<Ray> constructRaysThroughPixel(int nX, int nY, int j, int i, int resolution) {
+       /**
+        * pCenter is the center Point of the square pixel
+        */
+       Point3D pCenter = _p0.add(_vTo.scale(_distance));  // the view plane center point
+       Point3D pixelCenter = calculateTheSquareCenterPoint(_height / nY, _width / nX, nX, nY, j, i, pCenter);
+       List<Ray> rays = new LinkedList<Ray>();
+       /**
+        * creating a ray to center of Pixel
+        */
+       rays.add(new Ray(_p0, pixelCenter.subtract(_p0)));
+       if (resolution != 0) {
+           double squareHeight = _height / nY / resolution;
+           double squareWidth = _width / nX / resolution;
+           for (int row = 0; row < resolution; row++)
+               for (int column = 0; column < resolution; column++) {
+                   Point3D result = calculateTheSquareCenterPoint(squareHeight, squareWidth, resolution, resolution, column, row,
+                           pixelCenter);
+                   rays.add(new Ray(_p0, result.subtract(_p0)));
+               }
+       }
+       return rays;
+   }
+
+
+    /**
+     * The function get parameters and according to them ,calculate the
+     * center Point of the square pixel effect by _vUp and _vRight
+     *
+     * @param squareHeight  height from the center of the square pixel
+     * @param squareWidth   width from the center of the square pixel
+     * @param nX             Number of pixels in X axis
+     * @param nY             Number of pixels in Y axis
+     * @param j              The current pixel in Y axis
+     * @param i              The current pixel in X axis
+     * @param pixelCenter    center Point 3D of the square pixel
+     * @return  the center Point of the square pixel effect by _vUp and _vRight
+     */
+    private Point3D calculateTheSquareCenterPoint(double squareHeight, double squareWidth, int nX, int nY, int j, int i,
+                                                Point3D pixelCenter) {
+
+        double highFromCenter = -((i - (nY - 1) / 2d) * squareHeight);
+        double widthFromCenter = (j - (nX - 1) / 2d) * squareWidth;
+        /**
+         * Pij is the center Point of the square pixel
+         */
+        Point3D pIJ = pixelCenter;
+        /**
+         * move the Point to vUp direction , in length highFromCenter
+         */
+        if (highFromCenter != 0) {
+            pIJ = pIJ.add(_vUp.scale(highFromCenter));
+        }
+        /**
+         * move the Point to vRight direction , in length widthFromCenter
+         */
+        if (widthFromCenter != 0) {
+            pIJ = pIJ.add(_vRight.scale(widthFromCenter));
+        }
+        return pIJ;
+    }
+
 
     /**
      * getter _p0 field
