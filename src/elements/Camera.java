@@ -13,9 +13,24 @@ import static primitives.Util.isZero;
  * The type Camera
  */
 public class Camera {
-    private Point3D _p0;   // the point that the rays come out from the camera
+    /**
+     * the point that the rays come out from the camera
+     * and hit the view plane
+     */
+    private Point3D _p0;
+    /**
+     * the point that the rays come out from the camera
+     * and go in orthogonal direction to the view plane (and hit it)
+     */
     private Vector _vTo;
+    /**
+     * the point that the rays come out from the camera
+     * and go straight up
+     */
     private Vector _vUp;
+    /**
+     * vRight is eqaul to:  vRight= vTo X vUp
+     */
      private Vector _vRight;
 
     private double _distance =1; //distance from _p0 to the view plane
@@ -33,6 +48,10 @@ public class Camera {
       this._p0 = p0;
       _vTo=vTo.normalized();
       _vUp=vUp.normalized();
+      /**
+       * _vTo.dotProduct(_vUp) need to be orthogonal that mean need to be 0.
+       * if it`s not 0- throw Exception, else do crossProduct
+       */
       if(!isZero(_vTo.dotProduct(_vUp))){
           throw new IllegalArgumentException("vUp is not orthogonal to vTo ");
       }
